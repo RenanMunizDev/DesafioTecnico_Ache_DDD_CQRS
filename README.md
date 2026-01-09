@@ -1,408 +1,416 @@
-# ?? SAP S/4HANA SD Integration API
+# 🏥 SAP S/4HANA SD Integration API
 
-![.NET](https://img.shields.io/badge/.NET-8.0-512BD4?style=for-the-badge&logo=dotnet)
-![C#](https://img.shields.io/badge/C%23-12.0-239120?style=for-the-badge&logo=c-sharp)
-![SAP](https://img.shields.io/badge/SAP-S%2F4HANA-0FAAFF?style=for-the-badge&logo=sap)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+<div align="center">
 
-> **API REST de integra��o com o m�dulo SD (Sales & Distribution) do SAP S/4HANA, implementando as melhores pr�ticas de Clean Architecture, DDD e CQRS.**
+![.NET 8](https://img.shields.io/badge/.NET-8.0-512BD4?logo=dotnet)
+![C#](https://img.shields.io/badge/C%23-12.0-239120?logo=csharp)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Build](https://img.shields.io/badge/build-passing-brightgreen)
+![SAP](https://img.shields.io/badge/SAP-S%2F4HANA-0FAAFF?logo=sap)
 
----
+**API REST robusta e segura para integração com o módulo SD (Sales & Distribution) do SAP S/4HANA**
 
-## ?? Sobre o Projeto
+[Funcionalidades](#-funcionalidades) •
+[Tecnologias](#-tecnologias-utilizadas) •
+[Arquitetura](#-arquitetura) •
+[Como Usar](#-como-usar) •
+[Segurança](#-segurança-owasp) •
+[Contribuir](#-como-contribuir)
 
-Esta API REST foi desenvolvida para integra��o com o m�dulo SD (Sales & Distribution) do SAP S/4HANA utilizando o protocolo OData/REST. O projeto implementa as melhores pr�ticas de desenvolvimento de software e seguran�a, incluindo:
-
-- **Clean Architecture** - Separa��o clara de responsabilidades em camadas
-- **Domain-Driven Design (DDD)** - Modelagem rica de dom�nio com Entities e Value Objects
-- **CQRS Pattern** - Separa��o entre comandos e consultas usando MediatR
-- **SOLID Principles** - C�digo extens�vel e de f�cil manuten��o
-- **OWASP API Security Top 10** - Implementa��o de pr�ticas de seguran�a recomendadas
-
-### ?? Funcionalidades Principais
-
-- ? **Cria��o de Pedidos de Venda** no SAP S/4HANA
-- ?? **Consulta de Pedidos** por n�mero de documento
-- ?? **Autentica��o via API Key** (OWASP API2)
-- ?? **Rate Limiting** para prote��o contra abuso (OWASP API4)
-- ?? **Valida��o completa de dados** com FluentValidation
-- ??? **Security Headers** conforme OWASP
-- ?? **Logging estruturado** de todas as opera��es
-- ?? **Documenta��o Swagger/OpenAPI** completa
+</div>
 
 ---
 
-## ??? Arquitetura
+## 📋 Sobre o Projeto
 
-O projeto segue os princ�pios da **Clean Architecture** com 4 camadas bem definidas:
+Esta API foi desenvolvida como parte de um desafio técnico, implementando uma solução enterprise-grade para integração com o SAP S/4HANA. O projeto demonstra proficiência em arquitetura de software, padrões de design e boas práticas de desenvolvimento.
+
+### 🎯 Objetivos
+
+- ✅ Integração com SAP S/4HANA via OData/REST (API_SALES_ORDER_SRV)
+- ✅ Criação e consulta de pedidos de venda (Sales Orders)
+- ✅ Arquitetura limpa, escalável e testável
+- ✅ Segurança implementada seguindo OWASP API Security Top 10
+- ✅ Pronto para ambientes de produção
+
+---
+
+## ✨ Funcionalidades
+
+### 📦 Gestão de Pedidos de Venda
+
+- **Criar Pedido de Venda**: Integração completa com SAP para criação de novos pedidos
+- **Consultar Pedido**: Busca de pedidos por número do documento
+- **Validação Automática**: Validação de dados com FluentValidation
+- **Rastreamento**: Logs detalhados de todas as operações
+
+### 🔐 Segurança Empresarial
+
+- **Autenticação por API Key**: Sistema de autenticação robusto
+- **Rate Limiting**: Proteção contra abuso (30 req/min, 500 req/hora)
+- **Headers de Segurança**: Implementação de headers recomendados pela OWASP
+- **Validação de Entrada**: Proteção contra injeção e ataques
+
+### 📊 Observabilidade
+
+- **Logging Estruturado**: Logs detalhados de todas as operações
+- **Health Check**: Endpoint para monitoramento da saúde da aplicação
+- **Swagger/OpenAPI**: Documentação interativa completa
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+### Core Technologies
+
+<div align="center">
+
+| Tecnologia | Versão | Uso |
+|:----------:|:------:|:---:|
+| ![.NET](https://img.shields.io/badge/.NET-8.0-512BD4?logo=dotnet) | 8.0 | Framework principal |
+| ![C#](https://img.shields.io/badge/C%23-12.0-239120?logo=csharp) | 12.0 | Linguagem de programação |
+| ![ASP.NET Core](https://img.shields.io/badge/ASP.NET_Core-8.0-512BD4?logo=dotnet) | 8.0 | Web API |
+| ![SAP](https://img.shields.io/badge/SAP-S%2F4HANA-0FAAFF?logo=sap) | - | Sistema ERP |
+
+</div>
+
+### Bibliotecas e Frameworks
+
+- **MediatR** (12.x) - Implementação do padrão CQRS
+- **FluentValidation** (11.x) - Validação de dados
+- **AspNetCoreRateLimit** (5.x) - Rate limiting e throttling
+- **Swashbuckle** (6.x) - Documentação OpenAPI/Swagger
+
+### Patterns & Practices
 
 ```
-???????????????????????????????????????????????????
-?           API Layer (Presentation)              ?
-?   Controllers, Middlewares, DTOs               ?
-???????????????????????????????????????????????????
-                 ?
-???????????????????????????????????????????????????
-?        Application Layer (Use Cases)            ?
-?   Commands, Queries, Handlers, Validators      ?
-???????????????????????????????????????????????????
-                 ?
-???????????????????????????????????????????????????
-?           Domain Layer (Core)                   ?
-?   Entities, Value Objects, Interfaces          ?
-???????????????????????????????????????????????????
-                 ?
-???????????????????????????????????????????????????
-?      Infrastructure Layer (External)            ?
-?   Repositories, SAP Services, Persistence       ?
-???????????????????????????????????????????????????
+✓ Clean Architecture          ✓ CQRS Pattern
+✓ Domain-Driven Design (DDD)  ✓ Repository Pattern
+✓ SOLID Principles            ✓ Dependency Injection
+✓ Value Objects               ✓ Validation Pattern
 ```
 
-### ?? Estrutura de Pastas
+---
+
+## 🏗️ Arquitetura
+
+O projeto segue os princípios de **Clean Architecture** e **DDD**, organizados em 4 camadas:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                     🌐 API Layer                            │
+│  Controllers, Middlewares, Filters, Program.cs              │
+├─────────────────────────────────────────────────────────────┤
+│                 📋 Application Layer                        │
+│  Commands, Queries, DTOs, Validators, Behaviors             │
+├─────────────────────────────────────────────────────────────┤
+│                   💼 Domain Layer                           │
+│  Entities, Value Objects, Enums, Interfaces, Rules          │
+├─────────────────────────────────────────────────────────────┤
+│                 🔧 Infrastructure Layer                     │
+│  Repositories, SAP Integration, External Services           │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### 📁 Estrutura de Pastas
 
 ```
 DesafioTecnico_Ache_DDD_CQRS/
-??? src/
-?   ??? DesafioTecnico_Ache.API/          # Camada de Apresenta��o
-?   ?   ??? Controllers/                   # Endpoints REST
-?   ?   ??? Middleware/                    # Middlewares customizados
-?   ?   ??? Program.cs                     # Configura��o da aplica��o
-?   ?
-?   ??? DesafioTecnico_Ache.Application/  # Camada de Aplica��o
-?   ?   ??? Commands/                      # Comandos CQRS
-?   ?   ??? Queries/                       # Consultas CQRS
-?   ?   ??? Handlers/                      # Command/Query Handlers
-?   ?   ??? Validators/                    # FluentValidation
-?   ?   ??? DTOs/                          # Data Transfer Objects
-?   ?   ??? Behaviors/                     # Pipeline Behaviors
-?   ?
-?   ??? DesafioTecnico_Ache.Domain/       # Camada de Dom�nio
-?   ?   ??? Entities/                      # Entidades de Dom�nio
-?   ?   ??? ValueObjects/                  # Value Objects
-?   ?   ??? Interfaces/                    # Contratos
-?   ?   ??? Enums/                         # Enumera��es
-?   ?   ??? Common/                        # Classes base
-?   ?
-?   ??? DesafioTecnico_Ache.Infrastructure/ # Camada de Infraestrutura
-?       ??? Repositories/                   # Implementa��o de reposit�rios
-?       ??? SAP/                           # Integra��o com SAP
-?           ??? Services/                   # OData Service
-?
-??? README.md
+├── 📂 src/
+│   ├── 🎯 DesafioTecnico_Ache.API/
+│   │   ├── Controllers/          # Endpoints REST
+│   │   ├── Middleware/           # Autenticação, Logging, OWASP
+│   │   └── Program.cs            # Configuração da aplicação
+│   │
+│   ├── 📋 DesafioTecnico_Ache.Application/
+│   │   ├── Commands/             # Comandos CQRS (escrita)
+│   │   ├── Queries/              # Queries CQRS (leitura)
+│   │   ├── DTOs/                 # Data Transfer Objects
+│   │   ├── Validators/           # Validações FluentValidation
+│   │   └── Behaviors/            # Pipeline behaviors
+│   │
+│   ├── 💼 DesafioTecnico_Ache.Domain/
+│   │   ├── Entities/             # Entidades de domínio
+│   │   ├── ValueObjects/         # Value Objects DDD
+│   │   ├── Enums/                # Enumeradores
+│   │   ├── Interfaces/           # Contratos do domínio
+│   │   └── Common/               # Classes base
+│   │
+│   └── 🔧 DesafioTecnico_Ache.Infrastructure/
+│       ├── Repositories/         # Implementação de repositórios
+│       └── SAP/                  # Serviços de integração SAP
+│           └── Services/
+│
+└── 📄 README.md                  # Este arquivo
 ```
 
 ---
 
-## ??? Seguran�a OWASP
+## 🚀 Como Usar
 
-A API implementa as seguintes prote��es do **OWASP API Security Top 10**:
+### 📋 Pré-requisitos
 
-| Vulnerabilidade | Implementa��o | Localiza��o |
-|----------------|---------------|-------------|
-| **API1** - Broken Object Level Authorization | Valida��o de acesso e propriedade | Controllers, Handlers |
-| **API2** - Broken Authentication | API Key Authentication | `ApiKeyAuthenticationMiddleware` |
-| **API3** - Broken Object Property Level Authorization | DTOs controlados, sem mass assignment | Application Layer |
-| **API4** - Unrestricted Resource Consumption | Rate Limiting (30/min, 500/h) | `IpRateLimitOptions` |
-| **API8** - Security Misconfiguration | Security Headers, valida��es | `SecurityHeadersMiddleware` |
+- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) instalado
+- IDE recomendada: [Visual Studio 2022](https://visualstudio.microsoft.com/) ou [VS Code](https://code.visualstudio.com/)
+- Acesso ao SAP S/4HANA (para ambiente de produção)
 
-### ?? Headers de Seguran�a Implementados
+### 📥 Instalação
 
-- `X-Content-Type-Options: nosniff` - Previne MIME sniffing
-- `X-Frame-Options: DENY` - Previne Clickjacking
-- `Strict-Transport-Security` - Force HTTPS (HSTS)
-- `Content-Security-Policy` - Previne XSS e injection
-- `Referrer-Policy: no-referrer` - Controla informa��es de refer�ncia
-- `Permissions-Policy` - Desabilita recursos desnecess�rios
+1. **Clone o repositório**
+   ```bash
+   git clone https://github.com/RenanMunizDev/DesafioTecnico_Ache_DDD_CQRS.git
+   cd DesafioTecnico_Ache_DDD_CQRS
+   ```
 
----
+2. **Restaure as dependências**
+   ```bash
+   dotnet restore
+   ```
 
-## ?? Como Come�ar
+3. **Configure o `appsettings.json`**
+   
+   Edite o arquivo `src/DesafioTecnico_Ache.API/appsettings.json`:
 
-### ?? Pr�-requisitos
+   ```json
+   {
+     "Authentication": {
+       "ApiKeys": [
+         "sua-api-key-aqui"
+       ]
+     },
+     "SapConfiguration": {
+       "BaseUrl": "https://seu-sap-server.com/sap/opu/odata/sap/API_SALES_ORDER_SRV",
+       "Username": "SEU_USUARIO_SAP",
+       "Password": "SUA_SENHA_SAP",
+       "ClientId": "100",
+       "Language": "PT"
+     }
+   }
+   ```
 
-- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
-- [Visual Studio 2022](https://visualstudio.microsoft.com/) ou [VS Code](https://code.visualstudio.com/)
-- Acesso ao SAP S/4HANA (para integra��o real)
+4. **Execute a aplicação**
+   ```bash
+   cd src/DesafioTecnico_Ache.API
+   dotnet run
+   ```
 
-### ?? Instala��o
-
-1. **Clone o reposit�rio**
-```bash
-git clone https://github.com/RenanMunizDev/DesafioTecnico_Ache_DDD_CQRS.git
-cd DesafioTecnico_Ache_DDD_CQRS
-```
-
-2. **Restaure as depend�ncias**
-```bash
-dotnet restore
-```
-
-3. **Configure o appsettings.json**
-
-Edite o arquivo `src/DesafioTecnico_Ache.API/appsettings.json`:
-
-```json
-{
-  "Authentication": {
-    "ApiKeys": [
-      "sua-api-key-aqui"
-    ]
-  },
-  "SapConfiguration": {
-    "BaseUrl": "https://seu-servidor-sap.com/sap/opu/odata/sap/API_SALES_ORDER_SRV",
-    "Username": "SEU_USUARIO_SAP",
-    "Password": "SUA_SENHA_SAP",
-    "ClientId": "100",
-    "Language": "PT"
-  }
-}
-```
-
-4. **Execute a aplica��o**
-```bash
-cd src/DesafioTecnico_Ache.API
-dotnet run
-```
-
-5. **Acesse a documenta��o Swagger**
-
-Abra o navegador em: `https://localhost:5001` ou `http://localhost:5000`
+5. **Acesse a documentação Swagger**
+   
+   Abra o navegador em: `https://localhost:5001` ou `http://localhost:5000`
 
 ---
 
-## ?? Como Usar
+## 📖 Exemplos de Uso
 
-### ?? Autentica��o
+### 🔑 Autenticação
 
-Todas as requisi��es (exceto Swagger e Health Check) requerem autentica��o via **API Key**.
+Todas as requisições devem incluir o header de autenticação:
 
-Adicione o header em todas as requisi��es:
 ```http
 X-API-Key: dev-api-key-12345678-abcd-efgh-ijkl-mnopqrstuvwx
 ```
 
-### ?? Exemplos de Uso
-
-#### 1?? Criar um Pedido de Venda
+### 📝 Criar Pedido de Venda
 
 **Request:**
 ```http
-POST /api/v1/PedidosVenda
+POST /api/v1/pedidosvenda
 Content-Type: application/json
-X-API-Key: sua-api-key-aqui
+X-API-Key: sua-api-key
 
 {
-  "clienteId": "0000100001",
-  "tipoDocumentoVenda": "OR",
+  "clienteId": "0001234567",
+  "nomeCliente": "Farmácia São Paulo LTDA",
+  "dataPedido": "2024-01-15T10:30:00",
+  "dataEntregaSolicitada": "2024-01-20",
+  "enderecoEntrega": {
+    "logradouro": "Av. Paulista",
+    "numero": "1000",
+    "bairro": "Bela Vista",
+    "cidade": "São Paulo",
+    "estado": "SP",
+    "cep": "01310-100"
+  },
   "organizacaoVendas": "1000",
   "canalDistribuicao": "10",
-  "setorAtividade": "00",
-  "escritorioVendas": "1000",
-  "grupoVendedores": "100",
-  "itens": [
-    {
-      "material": "MAT-00001",
-      "quantidade": 10,
-      "unidadeMedida": "UN",
-      "precoUnitario": 150.50
-    }
-  ],
-  "enderecoEntrega": {
-    "logradouro": "Av. Brigadeiro Faria Lima",
-    "numero": "1000",
-    "complemento": "Andar 10",
-    "bairro": "Jardim Paulistano",
-    "cidade": "S�o Paulo",
-    "estado": "SP",
-    "cep": "01452-000",
-    "pais": "BR"
-  }
-}
-```
-
-**Response: 201 Created**
-```json
-{
-  "numeroDocumento": "0010001234",
-  "clienteId": "0000100001",
-  "tipoDocumentoVenda": "OR",
-  "dataCriacao": "2024-01-15T10:30:00Z",
-  "valorTotal": 1505.00,
+  "setor": "00",
   "moeda": "BRL",
-  "status": "Criado",
   "itens": [
     {
-      "numeroItem": "000010",
-      "material": "MAT-00001",
-      "descricaoMaterial": "Produto Exemplo",
-      "quantidade": 10,
-      "precoUnitario": 150.50,
-      "valorTotal": 1505.00
+      "materialId": "MAT001",
+      "descricaoMaterial": "Medicamento X 500mg",
+      "quantidade": 100,
+      "unidadeMedida": "CX",
+      "precoUnitario": 25.50,
+      "centro": "CTR1",
+      "deposito": "DEP1"
     }
   ]
 }
 ```
 
-#### 2?? Consultar um Pedido de Venda
+**Response:** `201 Created`
+```json
+{
+  "id": "abc123-def456-ghi789",
+  "numeroDocumento": "0012345678",
+  "clienteId": "0001234567",
+  "nomeCliente": "Farmácia São Paulo LTDA",
+  "dataPedido": "2024-01-15T10:30:00",
+  "status": "Pendente",
+  "valorTotal": 2550.00,
+  "moeda": "BRL",
+  "itens": [...]
+}
+```
+
+### 🔍 Consultar Pedido
 
 **Request:**
 ```http
-GET /api/v1/PedidosVenda/0010001234
-X-API-Key: sua-api-key-aqui
+GET /api/v1/pedidosvenda/0012345678
+X-API-Key: sua-api-key
 ```
 
-**Response: 200 OK**
+**Response:** `200 OK`
 ```json
 {
-  "numeroDocumento": "0010001234",
-  "clienteId": "0000100001",
-  "nomeCliente": "Empresa Exemplo Ltda",
-  "tipoDocumentoVenda": "OR",
-  "dataCriacao": "2024-01-15T10:30:00Z",
-  "valorTotal": 1505.00,
-  "moeda": "BRL",
-  "status": "Criado"
+  "id": "abc123-def456-ghi789",
+  "numeroDocumento": "0012345678",
+  "clienteId": "0001234567",
+  "nomeCliente": "Farmácia São Paulo LTDA",
+  "status": "Confirmado",
+  "valorTotal": 2550.00,
+  "itens": [...]
+}
+```
+
+### 🏥 Health Check
+
+```http
+GET /health
+```
+
+**Response:** `200 OK`
+```json
+{
+  "status": "Healthy"
 }
 ```
 
 ---
 
-## ?? Testes
+## 🔐 Segurança OWASP
 
-### Executar Testes
+Este projeto implementa as recomendações da **OWASP API Security Top 10**:
+
+| # | Vulnerabilidade | Implementação |
+|:-:|:---------------|:--------------|
+| **API1** | Broken Object Level Authorization | ✅ Validação de acesso e autorização por recurso |
+| **API2** | Broken Authentication | ✅ Autenticação via API Key com middleware dedicado |
+| **API3** | Broken Object Property Level Authorization | ✅ DTOs controlados, sem mass assignment |
+| **API4** | Unrestricted Resource Consumption | ✅ Rate Limiting (30 req/min, 500 req/hora) |
+| **API8** | Security Misconfiguration | ✅ Headers de segurança, validação de entrada, tratamento de erros |
+
+### 🛡️ Middlewares de Segurança
+
+- **ApiKeyAuthenticationMiddleware**: Validação de API Key
+- **SecurityHeadersMiddleware**: Headers de segurança (HSTS, CSP, X-Frame-Options)
+- **GlobalExceptionHandlerMiddleware**: Tratamento seguro de exceções
+- **RequestLoggingMiddleware**: Auditoria de requisições
+
+---
+
+## 🧪 Testes
+
+### Executar Testes (quando implementados)
 
 ```bash
-# Executar todos os testes
 dotnet test
+```
 
-# Executar com cobertura de c�digo
-dotnet test --collect:"XPlat Code Coverage"
+### Cobertura de Código (quando implementada)
 
-# Executar testes de uma categoria espec�fica
-dotnet test --filter Category=Integration
+```bash
+dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
 ```
 
 ---
 
-## ??? Tecnologias Utilizadas
+## 📊 Status do Projeto
 
-### Core Framework
-![.NET](https://img.shields.io/badge/.NET_8-512BD4?style=flat&logo=dotnet&logoColor=white)
-![C#](https://img.shields.io/badge/C%23_12-239120?style=flat&logo=c-sharp&logoColor=white)
-![ASP.NET Core](https://img.shields.io/badge/ASP.NET_Core-512BD4?style=flat&logo=dotnet&logoColor=white)
+🚧 **Em Desenvolvimento Ativo**
 
-### Arquitetura & Patterns
-![Clean Architecture](https://img.shields.io/badge/Clean_Architecture-000000?style=flat)
-![DDD](https://img.shields.io/badge/DDD-FF6B6B?style=flat)
-![CQRS](https://img.shields.io/badge/CQRS-4ECDC4?style=flat)
-
-### Bibliotecas Principais
-- **MediatR** (v12.2.0) - CQRS Pattern e Mediator
-- **FluentValidation** (v11.9.0) - Valida��o de dados
-- **AspNetCoreRateLimit** (v5.0.0) - Rate Limiting
-- **Swashbuckle (Swagger)** (v6.5.0) - Documenta��o da API
-
-### Integra��o
-![SAP](https://img.shields.io/badge/SAP_S%2F4HANA-0FAAFF?style=flat&logo=sap&logoColor=white)
-![OData](https://img.shields.io/badge/OData-ED8B00?style=flat)
-![REST](https://img.shields.io/badge/REST_API-009688?style=flat)
-
-### Seguran�a
-![OWASP](https://img.shields.io/badge/OWASP_Top_10-000000?style=flat&logo=owasp&logoColor=white)
-- API Key Authentication
-- Rate Limiting
-- Security Headers
-- Input Validation
-
----
-
-## ?? Status do Projeto
-
-?? **Em desenvolvimento ativo**
-
-### ? Funcionalidades Implementadas
-- [x] Cria��o de pedidos de venda
-- [x] Consulta de pedidos por n�mero
-- [x] Autentica��o via API Key
+- [x] Estrutura base do projeto (Clean Architecture + DDD)
+- [x] Integração com SAP S/4HANA via OData
+- [x] CQRS com MediatR
+- [x] Autenticação e autorização
 - [x] Rate Limiting
-- [x] Valida��o com FluentValidation
+- [x] Validação com FluentValidation
+- [x] Documentação Swagger/OpenAPI
+- [x] Middlewares de segurança OWASP
 - [x] Logging estruturado
-- [x] Documenta��o Swagger
-- [x] Security Headers OWASP
-- [x] Global Exception Handler
-- [x] CQRS Pattern
-
-### ?? Roadmap
-- [ ] Atualiza��o de pedidos de venda
-- [ ] Cancelamento de pedidos
-- [ ] Consulta com filtros avan�ados
-- [ ] Pagina��o de resultados
-- [ ] Cache distribu�do (Redis)
-- [ ] Testes unit�rios e de integra��o
+- [ ] Testes unitários
+- [ ] Testes de integração
+- [ ] Docker/Containerização
 - [ ] CI/CD Pipeline
-- [ ] Containeriza��o (Docker)
-- [ ] Monitoramento (Application Insights)
 
 ---
 
-## ?? Como Contribuir
+## 🤝 Como Contribuir
 
-Contribui��es s�o sempre bem-vindas! Para contribuir:
+Contribuições são bem-vindas! Siga os passos abaixo:
 
 1. **Fork** o projeto
 2. Crie uma **branch** para sua feature (`git checkout -b feature/MinhaFeature`)
-3. **Commit** suas mudan�as (`git commit -m 'Adiciona MinhaFeature'`)
+3. **Commit** suas mudanças (`git commit -m 'Adiciona MinhaFeature'`)
 4. **Push** para a branch (`git push origin feature/MinhaFeature`)
 5. Abra um **Pull Request**
 
-### ?? Diretrizes de Contribui��o
+### 📝 Padrões de Código
 
-- Siga os padr�es de c�digo existentes
-- Escreva testes para novas funcionalidades
-- Atualize a documenta��o quando necess�rio
-- Use commits sem�nticos (feat, fix, docs, refactor, etc.)
-- Mantenha o c�digo em portugu�s para consist�ncia
-
----
-
-## ?? Licen�a
-
-Este projeto est� sob a licen�a MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+- Siga os princípios **SOLID**
+- Utilize **nomenclatura em português** para domínio de negócio
+- Documente classes e métodos públicos com **XML Comments**
+- Mantenha os testes atualizados
+- Siga os padrões de commit: `feat:`, `fix:`, `docs:`, `refactor:`
 
 ---
 
-## ?? Autor
+## 👨‍💻 Autor
+
+<div align="center">
 
 **Renan Muniz**
 
-- ?? GitHub: [@RenanMunizDev](https://github.com/RenanMunizDev)
-- ?? Email: dev@ache.com.br
-- ?? LinkedIn: [Renan Muniz](https://linkedin.com/in/renanmuniz)
+[![GitHub](https://img.shields.io/badge/GitHub-RenanMunizDev-181717?logo=github)](https://github.com/RenanMunizDev)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Conectar-0077B5?logo=linkedin)](https://www.linkedin.com/in/renan-muniz-dev)
+[![Email](https://img.shields.io/badge/Email-Contato-D14836?logo=gmail)](mailto:renan.muniz@email.com)
+
+*Desenvolvedor Backend | .NET | C# | SAP | Clean Architecture*
+
+</div>
 
 ---
 
-## ?? Suporte
+## 📄 Licença
 
-Se voc� tiver alguma d�vida ou problema, por favor:
-
-1. Verifique a [documenta��o Swagger](https://localhost:5001)
-2. Consulte as [Issues abertas](https://github.com/RenanMunizDev/DesafioTecnico_Ache_DDD_CQRS/issues)
-3. Crie uma [nova Issue](https://github.com/RenanMunizDev/DesafioTecnico_Ache_DDD_CQRS/issues/new)
+Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ---
 
-## ?? Agradecimentos
+## 🙏 Agradecimentos
 
-- Laborat�rio Ach� pela oportunidade do desafio t�cnico
-- Comunidade .NET pelo excelente ecossistema
-- SAP pela documenta��o da API OData
+- **Aché Laboratórios Farmacêuticos** pelo desafio técnico
+- **Comunidade .NET** pelas excelentes ferramentas e bibliotecas
+- **SAP** pela documentação da API OData
 
 ---
 
 <div align="center">
 
-**? Se este projeto foi �til para voc�, considere dar uma estrela!**
+**⭐ Se este projeto foi útil para você, considere dar uma estrela!**
 
-Made with ?? and ? by [Renan Muniz](https://github.com/RenanMunizDev)
+Desenvolvido com ❤️ e ☕ por [Renan Muniz](https://github.com/RenanMunizDev)
 
 </div>
