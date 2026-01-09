@@ -1,4 +1,4 @@
-# 🏥 SAP S/4HANA SD Integration API
+# 🏥 Desafio Técnico Achè - Integração SAP S/4HANA
 
 <div align="center">
 
@@ -8,7 +8,7 @@
 ![Build](https://img.shields.io/badge/build-passing-brightgreen)
 ![SAP](https://img.shields.io/badge/SAP-S%2F4HANA-0FAAFF?logo=sap)
 
-**API REST robusta e segura para integração com o módulo SD (Sales & Distribution) do SAP S/4HANA**
+**API REST para integração com o módulo SD (Sales & Distribution) do SAP S/4HANA**
 
 [Funcionalidades](#-funcionalidades) •
 [Tecnologias](#-tecnologias-utilizadas) •
@@ -23,7 +23,9 @@
 
 ## 📋 Sobre o Projeto
 
-Esta API foi desenvolvida como parte de um desafio técnico, implementando uma solução enterprise-grade para integração com o SAP S/4HANA. O projeto demonstra proficiência em arquitetura de software, padrões de design e boas práticas de desenvolvimento.
+Esta API foi desenvolvida como solução de integração para a **Aché Laboratórios Farmacêuticos**, uma das maiores indústrias farmacêuticas do Brasil, implementando comunicação robusta e segura com o SAP S/4HANA para gestão de pedidos.
+
+O projeto demonstra uma arquitetura enterprise-grade aplicada ao contexto farmacêutico, integrando processos de vendas e distribuição (módulo SD) do SAP com sistemas externos, respeitando as normas e regulamentações do setor.
 
 ### 🎯 Objetivos
 
@@ -31,15 +33,14 @@ Esta API foi desenvolvida como parte de um desafio técnico, implementando uma s
 - ✅ Criação e consulta de pedidos de venda (Sales Orders)
 - ✅ Arquitetura limpa, escalável e testável
 - ✅ Segurança implementada seguindo OWASP API Security Top 10
-- ✅ Pronto para ambientes de produção
 
 ---
 
 ## ✨ Funcionalidades
 
-### 📦 Gestão de Pedidos de Venda
+### 📦 Gestão de Pedidos
 
-- **Criar Pedido de Venda**: Integração completa com SAP para criação de novos pedidos
+- **Criar Pedido**: Integração completa com SAP para criação de novos pedidos
 - **Consultar Pedido**: Busca de pedidos por número do documento
 - **Validação Automática**: Validação de dados com FluentValidation
 - **Rastreamento**: Logs detalhados de todas as operações
@@ -369,10 +370,10 @@ Contribuições são bem-vindas! Siga os passos abaixo:
 **Renan Muniz**
 
 [![GitHub](https://img.shields.io/badge/GitHub-RenanMunizDev-181717?logo=github)](https://github.com/RenanMunizDev)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Conectar-0077B5?logo=linkedin)](https://www.linkedin.com/in/renan-muniz-dev)
-[![Email](https://img.shields.io/badge/Email-Contato-D14836?logo=gmail)](mailto:renan.muniz@email.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Conectar-0077B5?logo=linkedin)](https://www.linkedin.com/in/renanmuniz86/)
+[![Email](https://img.shields.io/badge/Email-Contato-D14836?logo=gmail)](mailto:renanmuniz@gmail.com)
 
-*Desenvolvedor Backend | .NET | C# | SAP | Clean Architecture*
+*Desenvolvedor Backend | .NET | C# *
 
 </div>
 
@@ -388,8 +389,6 @@ Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) par
 
 - **Aché Laboratórios Farmacêuticos** pelo desafio técnico
 - **Comunidade .NET** pelas excelentes ferramentas e bibliotecas
-- **SAP** pela documentação da API OData
-
 ---
 
 <div align="center">
