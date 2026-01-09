@@ -283,21 +283,6 @@ X-API-Key: sua-api-key
   "valorTotal": 2550.00,
   "itens": [...]
 }
-```
-
-### 🏥 Health Check
-
-```http
-GET /health
-```
-
-**Response:** `200 OK`
-```json
-{
-  "status": "Healthy"
-}
-```
-
 ---
 
 ## 🔐 Segurança OWASP
