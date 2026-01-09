@@ -30,7 +30,7 @@ O projeto demonstra uma arquitetura enterprise-grade aplicada ao contexto farmac
 ### 🎯 Objetivos
 
 - ✅ Integração com SAP S/4HANA via OData/REST (API_SALES_ORDER_SRV)
-- ✅ Criação e consulta de pedidos de venda (Sales Orders)
+- ✅ Criação e consulta de pedidos
 - ✅ Arquitetura limpa, escalável e testável
 - ✅ Segurança implementada seguindo OWASP API Security Top 10
 
